@@ -4,7 +4,7 @@
 **Tre Hamilton**
   Library, github
 **Christian Collins**
-  Team Lead, Client
+  Project Manager, Client
 **Caleb Miller**
   Client
 **Patrick Walter**
