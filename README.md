@@ -2,13 +2,13 @@
  
 # -- Team Members --
 **Tre Hamilton**
-  Duties:
+  Library, github
 **Christian Collins**
-  Duties:
+  Team Lead, Client
 **Caleb Miller**
-  Duties:
+  Client
 **Patrick Walter**
-  Duties: 
+  Server
 
 # -- Description --
 
