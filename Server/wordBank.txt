@@ -1,0 +1,10 @@
+apple
+grape
+peach
+mango
+berry
+lemon
+chess
+flame
+stone
+crane

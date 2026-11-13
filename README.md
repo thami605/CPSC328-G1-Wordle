@@ -1,4 +1,4 @@
-# CPSC328-G1-Wordle
+# **CPSC328-G1-Wordle**
  
 # -- Team Members --
 **Tre Hamilton**
