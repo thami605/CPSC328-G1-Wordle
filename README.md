@@ -2,13 +2,13 @@
  
 # -- Team Members --
 **Tre Hamilton**
-  Duties:
+  Library, github
 **Christian Collins**
-  Duties:
+  Project Manager, Client
 **Caleb Miller**
-  Duties:
+  Client
 **Patrick Walter**
-  Duties: 
+  Server
 
 # -- Description --
 
@@ -21,6 +21,7 @@
 ## How to run the server
 
 # -- Library --
+This project uses a Dynamic library containing common and helper functions. We chose Dynamic to help lower the requirements needed when compiling.
 
 # -- Protocols -- 
 
