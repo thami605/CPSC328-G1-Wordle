@@ -1,5 +1,5 @@
 /**********************************************************************/
-/* Author/Editor:  Tre Hamilton (CS)                                                                                                               
+/* Author/Editor:  Tre Hamilton (CS), Patrick Walter (CS)                                                                                                               
 /* Creation Date:  November 10, 2026
 /* Last Modified:  November 13, 2026                                                    
 /* Due Date:       November 23, 2026                                                   
@@ -13,10 +13,6 @@
 /*                 replay if necessary.
 /* Modifications:  Listed at the bottom of the file. 
 /**********************************************************************/
-
-/*
- *   Author: Patrick Walter
- */
 
 #include <unistd.h>
 #include <stdlib.h>
