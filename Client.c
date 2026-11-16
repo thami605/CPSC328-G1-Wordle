@@ -1,19 +1,19 @@
-/**********************************************************************/
-/* Author/Editor:  Tre Hamilton (CS), Patrick Walter (CS), 
-/*                 Caleb Miller (CS)                                                                                                               
-/* Creation Date:  November 10, 2026
-/* Last Modified:  November 13, 2026                                                    
-/* Due Date:       November 23, 2026                                                   
-/* Course:         CPSC 328                                                              
-/* Professor Name: Prof. Walther                                                         
-/* Assignment:     Group Project: Wordle Client/Server Application
-/* Filename:       Client.c
-/* Purpose:        Client side application for the Wordle game.
-/*                 This file connects to the server, receives 
-/*                 a random word, and allows the user to play, then 
-/*                 replay if necessary.
-/* Modifications:  Listed at the bottom of the file. 
-/**********************************************************************/
+/**********************************************************************
+ * Author/Editor:  Tre Hamilton (CS), Patrick Walter (CS), 
+ *                 Caleb Miller (CS)                                                                                                               
+ * Creation Date:  November 10, 2026
+ * Last Modified:  November 13, 2026                                                    
+ * Due Date:       November 23, 2026                                                   
+ * Course:         CPSC 328                                                              
+ * Professor Name: Prof. Walther                                                         
+ * Assignment:     Group Project: Wordle Client/Server Application
+ * Filename:       Client.c
+ * Purpose:        Client side application for the Wordle game.
+ *                 This file connects to the server, receives 
+ *                 a random word, and allows the user to play, then 
+ *                 replay if necessary.
+ * Modifications:  Listed at the bottom of the file. 
+ **********************************************************************/
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -45,23 +45,23 @@ void printWordleHeader(void)
 // Display tile colors with guess tile requested
 void printGuessTiles(const char originalGuess[], const char result[])
 {
-    printf("  ");
-    for (int i = 0; i < 5; i++)
-    {
-        const char *color;
+   printf("  ");
+   for (int i = 0; i < 5; i++)
+   {
+      const char *color;
 
-        /* The existing game logic stores exact matches as letters,
-           misplaced matches as #, and missing letters as /. */
-        if (result[i] == originalGuess[i])
-            color = TILE_GREEN; // Correct
-        else if (result[i] == '#')
-            color = TILE_YELLOW; // Misplaced
-        else
-            color = TILE_GRAY; // Not In Word
+      /* The existing game logic stores exact matches as letters,
+         misplaced matches as #, and missing letters as /. */
+      if (result[i] == originalGuess[i])
+         color = TILE_GREEN; // Correct
+      else if (result[i] == '#')
+         color = TILE_YELLOW; // Misplaced
+      else
+         color = TILE_GRAY; // Not In Word
 
-        printf("%s %c %s ", color, originalGuess[i], TILE_RESET);
-    }
-    printf("\n");
+      printf("%s %c %s ", color, originalGuess[i], TILE_RESET);
+   }
+   printf("\n");
 }
 
 int connectTCP(const char *host, const int port);
@@ -148,7 +148,7 @@ bool wordle(char word[])
       {
          printf("  Guess %d of 6: ", w + 1);
          if (fgets(guess, sizeof guess, stdin) == 0)
-               valid = false;
+            valid = false;
       }
       while (!valid || !validateGuess(guess));
 

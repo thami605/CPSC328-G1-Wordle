@@ -1,17 +1,17 @@
-/**********************************************************************/
-/* Author/Editor:  Tre Hamilton (CS), Patrick Walter (CS)                                                                                                               
-/* Creation Date:  November 12, 2026
-/* Last Modified:  November 13, 2026                                                    
-/* Due Date:       November 23, 2026                                                   
-/* Course:         CPSC 328                                                              
-/* Professor Name: Prof. Walther                                                         
-/* Assignment:     Group Project: Wordle Client/Server Application
-/* Filename:       Server.c
-/* Purpose:        Server side application for the Wordle game. This 
-/*                 file listens for clients, sends a random word to the
-/*                 client, and handles multiple clients.
-/* Modifications:  Listed at the bottom of the file. 
-/**********************************************************************/
+/********************************************************************** 
+ * Author/Editor:  Tre Hamilton (CS), Patrick Walter (CS)                                                                                                               
+ * Creation Date:  November 12, 2026
+ * Last Modified:  November 13, 2026                                                    
+ * Due Date:       November 23, 2026                                                   
+ * Course:         CPSC 328                                                              
+ * Professor Name: Prof. Walther                                                         
+ * Assignment:     Group Project: Wordle Client/Server Application
+ * Filename:       Server.c
+ * Purpose:        Server side application for the Wordle game. This 
+ *                 file listens for clients, sends a random word to the
+ *                 client, and handles multiple clients.
+ * Modifications:  Listed at the bottom of the file. 
+ **********************************************************************/
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
             break;
         case 2:
             port = atoi(argv[1]);
-            if (!verifyPort(port));
+            if (!verifyPort(port))
             exit(1);
         break;
         default:
@@ -81,7 +81,7 @@ void *threadWorker(void *arg)
     char  word[6];
     int *socket = (int *)arg;
     int num;
-    srandom(pthread_self());
+    srandom((unsigned int)time(NULL) ^ (unsigned int)pthread_self());
     if (write(*socket, "HELLO", sizeof("HELLO")) < 0)
     {
         perror("error writing hello");
@@ -121,20 +121,22 @@ void *threadWorker(void *arg)
     pthread_exit(NULL);
 }
 
-/**********************************************************************/
-/*
+/********************************************************************** 
+*/
 /* MODIFICATION HISTORY
-/*
-/**********************************************************************/
+*/
+/**********************************************************************
+*/ 
 /* Author:     Tre Hamilton                                                   
-/* Date:       November 12, 2026
-/* Update:     Created file, wrote comments based off of Design Document
-/* Time Spent: 10 minutes
-/*
-/**********************************************************************/
+ * Date:       November 12, 2026
+ *  Update:     Created file, wrote comments based off of Design Document
+ * Time Spent: 10 minutes
+*/
+/**********************************************************************
+*/ 
 /* Author:     Patrick Walter                                                  
-/* Date:       November 13, 2026
-/* Update:     Integrated his version of the server code.
-/* Time Spent: 
-/*
+ * Date:       November 13, 2026
+ * Update:     Integrated his version of the server code.
+ * Time Spent: 
+*/
 /**********************************************************************/

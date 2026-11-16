@@ -1,16 +1,16 @@
-/**********************************************************************/
-/* Author/Editor:  Patrick Walter (CS)                                                                                                               
-/* Creation Date:  November 15, 2026
-/* Last Modified:  November 15, 2026                                                    
-/* Due Date:       November 23, 2026                                                   
-/* Course:         CPSC 328                                                              
-/* Professor Name: Prof. Walther                                                         
-/* Assignment:     Group Project: Wordle Client/Server Application
-/* Filename:       validationUtils.c
-/* Purpose:        Program contains functions to validate user input 
-/*                 and port numbers for the Wordle game.
-/* Modifications:  Listed at the bottom of the file. 
-/**********************************************************************/
+/**********************************************************************
+ * Author/Editor:  Patrick Walter (CS)                                                                                                               
+ * Creation Date:  November 15, 2026
+ * Last Modified:  November 15, 2026                                                    
+ * Due Date:       November 23, 2026                                                   
+ * Course:         CPSC 328                                                              
+ * Professor Name: Prof. Walther                                                         
+ * Assignment:     Group Project: Wordle Client/Server Application
+ * Filename:       validationUtils.c
+ * Purpose:        Program contains functions to validate user input 
+ *                 and port numbers for the Wordle game.
+ * Modifications:  Listed at the bottom of the file. 
+ **********************************************************************/
 #include <sys/types.h>
 #include <stdio.h>
 #include <stdlib.h>
