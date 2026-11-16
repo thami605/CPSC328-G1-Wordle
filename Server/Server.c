@@ -1,7 +1,7 @@
 /**********************************************************************/
-/* Author/Editor:  Tre Hamilton (CS)                                                                                                               
+/* Author/Editor:  Tre Hamilton (CS), Patrick Walter (CS)                                                                                                               
 /* Creation Date:  November 12, 2026
-/* Last Modified:  November 12, 2026                                                    
+/* Last Modified:  November 13, 2026                                                    
 /* Due Date:       November 23, 2026                                                   
 /* Course:         CPSC 328                                                              
 /* Professor Name: Prof. Walther                                                         
@@ -12,70 +12,129 @@
 /*                 client, and handles multiple clients.
 /* Modifications:  Listed at the bottom of the file. 
 /**********************************************************************/
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/errno.h>
 #include <unistd.h>
+#include <string.h>
 #include <arpa/inet.h>
+#include <errno.h>
+#include <pthread.h>
 
-#define MAX_CLIENTS 5
-#define WORD_LENGTH 5
-#define MAX_WORDS 100
+char wordlist[10][6] = {"SWORD", "APPLE", "GHAST", "BROWN", "MUAVE", "MOVIE", "GROUP", "CHANT", "SMILE", "SHELL"};
 
-int main(int argc, char **argv) {
-    //User can specify a port number as a command line argument, otherwise default to 8080
-    int server_fd, client_fd;
-    struct sockaddr_in server_addr, client_addr;
-    socklen_t client_len = sizeof(client_addr);
-    char buffer[256];
+int numThreads;
+int passiveTCP(const int port, int qlen);
+void *threadWorker(void *arg);
+int verifyPort(int port);
 
-    // Create socket
-    server_fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (server_fd < 0) {
-        perror("Error: Unable to create socket");
-        exit(EXIT_FAILURE);
+int main(int argc, char *argv[])
+{
+    struct sockaddr_in clientaddr;
+    unsigned int    clientlen;
+    int psock, asock, tid;
+    int port = 65000;
+    int qlen = 10;
+    numThreads = 0;
+    switch (argc)
+    {
+        case 1:
+            break;
+        case 2:
+            port = atoi(argv[1]);
+            if (!verifyPort(port));
+            exit(1);
+        break;
+        default:
+            perror("usage: serverprogram [port]");
     }
 
-    // Configure server address
-    memset(&server_addr, 0, sizeof(server_addr));
-    server_addr.sin_family = AF_INET;
-    server_addr.sin_addr.s_addr = INADDR_ANY;
-    #define PORT 8080 // Define a valid port number
-        server_addr.sin_port = htons(PORT);
-
-    // Bind socket to the specified port
-    if (bind(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-        perror("Error: Unable to bind socket");
-        close(server_fd);
-        exit(EXIT_FAILURE);
+    psock = passiveTCP(port, qlen);
+    for(;;)
+    {
+        pthread_t child;
+        clientlen = sizeof(clientaddr);
+        asock = accept(psock, (struct sockaddr *)&clientaddr, &clientlen);
+        if (psock < 0)
+        {
+            if (errno == EINTR)
+                continue;
+            perror("error on accept");
+        }
+        tid = pthread_create(&child, NULL, threadWorker, (void *)&asock);
+        if (tid < 0)
+        {
+            perror("failure creating child thread");
+        }
+        pthread_detach(child);
+        numThreads++;
+        printf("Client connected. There are currently %d thread(s).\n", numThreads);
     }
-
-    // Listen for incoming connections
-    if (listen(server_fd, MAX_CLIENTS) < 0) {
-        perror("Error: Unable to listen on socket");
-        close(server_fd);
-        exit(EXIT_FAILURE);
-    }
-
-    printf("Server is listening on port %d...\n", PORT);
-
-    
-    // Accept a client connection on a forked process
-
-    /* -- Fork process -- */
-    // Send "Hello" to the client
-
-    // Listen for "READY" message from the client
-
-    // Select a random word from the word list
-    // Send the random word to the client
-
-    // Listen for "READY"
-
-    // Listen for "BYE" message from the client
-    // Close the client connection
-
-    // Close the server socket
-
-    return 0;
 }
+
+void *threadWorker(void *arg)
+{
+    char  buf[6];
+    char  word[6];
+    int *socket = (int *)arg;
+    int num;
+    srandom(pthread_self());
+    if (write(*socket, "HELLO", sizeof("HELLO")) < 0)
+    {
+        perror("error writing hello");
+    }
+    while (1)
+    {
+        num = random() % 10;
+        if (read(*socket, buf, sizeof(buf)) < 0)
+        {
+            perror("Error waiting for wordle");
+            break;
+        }
+        if (strcmp(buf, "WORD") == 0)
+        {
+            printf("Recieved %s from client.\n", buf);
+            if (write(*socket, wordlist[num], sizeof(wordlist[num])) == 0)
+            {
+                perror("error sending SWORD");
+                break;
+            }
+        }
+        else if (strcmp(buf, "QUIT") == 0)
+        {
+            printf("Recieved %s from client.\n", buf);
+            break;
+        }
+        else
+        {
+            printf("Recieved %s from client.\n", buf);
+            perror("Invalid response");
+            break;
+        }
+
+    }
+    numThreads--;
+    printf("Client disconnected. %d threads remain.", numThreads);
+    pthread_exit(NULL);
+}
+
+/**********************************************************************/
+/*
+/* MODIFICATION HISTORY
+/*
+/**********************************************************************/
+/* Author:     Tre Hamilton                                                   
+/* Date:       November 12, 2026
+/* Update:     Created file, wrote comments based off of Design Document
+/* Time Spent: 10 minutes
+/*
+/**********************************************************************/
+/* Author:     Patrick Walter                                                  
+/* Date:       November 13, 2026
+/* Update:     Integrated his version of the server code.
+/* Time Spent: 
+/*
+/**********************************************************************/
