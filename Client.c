@@ -34,13 +34,13 @@
 /* Display functions: can be copied into the newer client without changing validation. */
 void printWordleHeader(void)
 {
-    printf("\n  ----------------------------------\n");
-    printf("               WORDLE\n");
-    printf("  ----------------------------------\n");
-    printf("  Guess the five-letter word in six tries.\n\n");
-    printf("  %s A %s Correct position\n", TILE_GREEN, TILE_RESET);
-    printf("  %s A %s Present, wrong position\n", TILE_YELLOW, TILE_RESET);
-    printf("  %s A %s Not in the word\n\n", TILE_GRAY, TILE_RESET);
+   printf("\n  ----------------------------------\n");
+   printf("               WORDLE\n");
+   printf("  ----------------------------------\n");
+   printf("  Guess the five-letter word in six tries.\n\n");
+   printf("  %s A %s Correct position\n", TILE_GREEN, TILE_RESET);
+   printf("  %s A %s Present, wrong position\n", TILE_YELLOW, TILE_RESET);
+   printf("  %s A %s Not in the word\n\n", TILE_GRAY, TILE_RESET);
 }
 // Display tile colors with guess tile requested
 void printGuessTiles(const char originalGuess[], const char result[])
@@ -225,40 +225,53 @@ bool wordle(char word[])
 }
  
 
-/**********************************************************************/
-/*
-/* MODIFICATION HISTORY
-/*
-/**********************************************************************/
-/* Author:     Tre Hamilton                                                   
-/* Date:       November 10, 2026
-/* Update:     Created file, wrote comments based off of Design Document
-/* Time Spent: 10 minutes
-/*
-/**********************************************************************/
-/* Author:     Tre Hamilton                                                   
-/* Date:       November 12, 2026
-/* Update:     Added main function, arg line check, socket creation, and 
-/*             connection to server
-/* Time Spent: 5:30-6:30 | 1 hr
-/*
-/**********************************************************************/
-/* Author:     Tre Hamilton                                                   
-/* Date:       November 12, 2026
-/* Update:     Added main function, arg line check, socket creation, and 
-/*             connection to server, added base functionally for wordle.
-/* Time Spent: 8:00-10:00 | 2 hrs
-/*
 /**********************************************************************
-/* Author:     Patrick Walter                                                   
-/* Date:       November 13, 2026
-/* Update:     integrated his version.
-/* Time Spent: 
-/*
-/**********************************************************************/
-/* Author:     Caleb Miller                                                  
-/* Date:       November 13, 2026
-/* Update:     Made formatting changes and fixed case sensitivity issues
-/* Time Spent: 
-/*
-/**********************************************************************/
+ *
+ * MODIFICATION HISTORY
+ *
+ **********************************************************************/
+/**********************************************************************
+ * Author:     Tre Hamilton                                                   
+ * Date:       November 10, 2026
+ * Update:     Created file, wrote comments based off of Design Document
+ * Time Spent: 10 minutes
+ *
+ **********************************************************************/ 
+/**********************************************************************
+ * Author:     Tre Hamilton                                                   
+ * Date:       November 12, 2026
+ * Update:     Added main function, arg line check, socket creation, and 
+ *             connection to server
+ * Time Spent: 5:30-6:30 | 1 hr
+ *
+ **********************************************************************/
+/**********************************************************************
+ * Author:     Tre Hamilton                                                   
+ * Date:       November 12, 2026
+ * Update:     Added main function, arg line check, socket creation, and 
+ *             connection to server, added base functionally for wordle.
+ * Time Spent: 8:00-10:00 | 2 hrs
+ *
+ **********************************************************************/
+/**********************************************************************
+ * Author:     Patrick Walter                                                   
+ * Date:       November 13, 2026
+ * Update:     integrated his version.
+ * Time Spent: 
+ *
+ **********************************************************************/
+/**********************************************************************
+ * Author:     Caleb Miller                                                  
+ * Date:       November 13, 2026
+ * Update:     Made formatting changes and fixed case sensitivity issues
+ * Time Spent: 
+ *
+ **********************************************************************/
+/**********************************************************************
+ * 
+ * Author:     Tre Hamilton
+ * Date:       November 17, 2026
+ * Update:     Universalized Documentation for all files
+ * Time Spent: ~15 minutes
+ *
+ **********************************************************************/
