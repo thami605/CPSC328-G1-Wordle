@@ -33,6 +33,7 @@ int wordCount = 0;
 int numThreads; //global number of threads since we are not tracking them in a structure currently
 int passiveTCP(const int port, int qlen); //passive TCP socket method
 void *threadWorker(void *arg); //method for thread
+void loadWords(const char *filename); //method for loading words from file
 int verifyPort(int port); //port verificatino method
 int errexit(const char *format, ...); //Method for handling errors
 
@@ -49,6 +50,9 @@ int main(int argc, char *argv[])
     int port = 65000;
     int qlen = 10;
     numThreads = 0;
+
+    // Load words from file
+    loadWords("wordBank.txt");
 
     //switch based on number of arguments
     switch (argc)
@@ -232,5 +236,13 @@ void loadWords(const char *filename) {
  * Date:       November 17, 2026
  * Update:     Universalized Documentation for all files
  * Time Spent: ~15 minutes
+ *
+ **********************************************************************/
+/********************************************************************** 
+ * Author:     Tre Hamilton
+ * Date:       November 17, 2026
+ * Update:     Added implementation for loadWords to read from 
+ *             wordBank.txt and store in wordlist array
+ * Time Spent: ~45 minutes
  *
  **********************************************************************/
